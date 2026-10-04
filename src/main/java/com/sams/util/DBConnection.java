@@ -1,4 +1,3 @@
-
 package com.sams.util;
 
 import java.sql.Connection;
@@ -8,9 +7,14 @@ import java.sql.SQLException;
 public class DBConnection {
 
     private static final String URL =
-            "jdbc:mysql://localhost:3306/sams_db";
+            System.getenv("SAMS_DB_URL") != null
+                    ? System.getenv("SAMS_DB_URL")
+                    : "jdbc:mysql://localhost:3306/sams_db";
 
-    private static final String USER = "root";
+    private static final String USER =
+            System.getenv("SAMS_DB_USER") != null
+                    ? System.getenv("SAMS_DB_USER")
+                    : "root";
 
     public static Connection getConnection() throws SQLException {
 
@@ -31,7 +35,9 @@ public class DBConnection {
         }
 
         return DriverManager.getConnection(
-                URL, USER, password
+                URL,
+                USER,
+                password
         );
     }
 }
