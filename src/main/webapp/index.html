@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SAMS | Every Achievement Counts</title>
+
+<style>
+:root {
+    --ivory: #F7F7F0;
+    --forest: #244B3B;
+    --forest-light: #37624D;
+    --sage: #A8BDA5;
+    --gold: #D5AD61;
+    --ink: #26352D;
+    --muted: #7B887F;
+    --white: #FFFFFF;
+    --border: #E7E9E1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1160px, 90%);
+    margin: auto;
+}
+
+/* Navigation */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #F7F7F0ED;
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: var(--forest);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+    font-weight: 800;
+    transition: transform .2s;
+}
+
+.brand:hover .brand-icon {
+    transform: rotate(-5deg);
+}
+
+.brand h2 {
+    font-size: 19px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.brand p {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1.2px;
+    margin-top: 4px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 29px;
+    font-size: 13px;
+    color: #65736A;
+}
+
+.nav-links a:not(.nav-cta):hover {
+    color: var(--forest);
+}
+
+.nav-cta,
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: var(--forest);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid var(--forest);
+    transition: .2s;
+}
+
+.nav-cta:hover,
+.primary-btn:hover {
+    background: var(--forest-light);
+    transform: translateY(-2px);
+}
+
+.mobile-menu {
+    display: none;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--forest);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Hero */
+
+.hero {
+    padding: 77px 0 68px;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--forest);
+    background: #E9EFE5;
+    border: 1px solid #DCE6D8;
+    border-radius: 100px;
+    padding: 7px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    margin-bottom: 24px;
+}
+
+.eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--forest);
+}
+
+.hero h1 {
+    font-size: clamp(38px, 5vw, 62px);
+    font-weight: 650;
+    line-height: 1.12;
+    letter-spacing: -2.5px;
+    max-width: 590px;
+}
+
+.hero h1 span {
+    color: var(--forest);
+}
+
+.hero-copy {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 490px;
+    margin-top: 23px;
+    line-height: 1.9;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 29px;
+}
+
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    border: 1px solid #D9DED5;
+    background: transparent;
+    color: var(--ink);
+    padding: 12px 17px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.secondary-btn:hover {
+    background: white;
+    border-color: var(--sage);
+}
+
+.hero-note {
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* Illustrative growth card */
+
+.visual-card {
+    position: relative;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 22px 65px #26352D0C;
+}
+
+.visual-card::before {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #EAF0E7;
+    right: -25px;
+    top: -25px;
+    z-index: -1;
+}
+
+.visual-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.visual-head h3 {
+    font-size: 15px;
+}
+
+.visual-head p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.visual-symbol {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    border-radius: 11px;
+    background: #EAF0E7;
+    color: var(--forest);
+    font-size: 19px;
+}
+
+.chart-label {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 26px;
+}
+
+.growth-chart {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    display: block;
+}
+
+.chart-caption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 12px;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+}
+
+.visual-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.mini-card {
+    padding: 15px;
+    background: var(--ivory);
+    border-radius: 11px;
+}
+
+.mini-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.mini-card strong {
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.mini-card p {
+    font-size: 10px;
+    color: var(--forest);
+    margin-top: 4px;
+}
+
+/* Shared sections */
+
+.section {
+    padding: 70px 0;
+}
+
+.section-white {
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 25px;
+    margin-bottom: 31px;
+}
+
+.section-kicker {
+    color: var(--forest);
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.section-head h2 {
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -.8px;
+    line-height: 1.25;
+}
+
+.section-head p {
+    color: var(--muted);
+    font-size: 13px;
+    max-width: 420px;
+    margin-top: 10px;
+}
+
+/* Feature cards */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.feature-card {
+    padding: 25px;
+    border: 1px solid var(--border);
+    background: var(--ivory);
+    border-radius: 15px;
+    transition: transform .22s, box-shadow .22s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px #26352D0C;
+}
+
+.feature-icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: #E3EBDF;
+    color: var(--forest);
+    font-size: 22px;
+    margin-bottom: 22px;
+}
+
+.feature-card:nth-child(2) .feature-icon {
+    background: #F5EBD7;
+}
+
+.feature-card:nth-child(3) .feature-icon {
+    background: #E7EDEB;
+}
+
+.feature-card h3 {
+    font-size: 16px;
+    margin-bottom: 9px;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.feature-link {
+    display: inline-block;
+    color: var(--forest);
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.feature-link:hover {
+    text-decoration: underline;
+}
+
+/* Quality and fairness */
+
+.quality-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 65px;
+}
+
+.quality-copy h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    letter-spacing: -1.2px;
+    line-height: 1.2;
+}
+
+.quality-copy > p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+    margin-top: 17px;
+}
+
+.quality-list {
+    margin-top: 25px;
+    display: grid;
+    gap: 17px;
+}
+
+.quality-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.check {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #E4ECE0;
+    color: var(--forest);
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.quality-item strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.quality-item p {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.rubric-card {
+    background: var(--forest);
+    color: white;
+    padding: 29px;
+    border-radius: 17px;
+}
+
+.rubric-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.rubric-top h3 {
+    font-size: 17px;
+}
+
+.rubric-tag {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #E6D5AA;
+    border: 1px solid #587361;
+    border-radius: 6px;
+    padding: 6px 8px;
+}
+
+.rubric-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #E0E8DD;
+    font-size: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #FFFFFF20;
+}
+
+.rubric-row:last-of-type {
+    border-bottom: none;
+}
+
+.rubric-row span:last-child {
+    color: #E6D5AA;
+    white-space: nowrap;
+}
+
+.rubric-note {
+    font-size: 10px;
+    color: #C9D7CA;
+    margin-top: 20px;
+    line-height: 1.8;
+}
+
+/* Bottom call to action */
+
+.cta {
+    background: #E8EDE3;
+    border: 1px solid #DBE4D6;
+    border-radius: 18px;
+    padding: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.cta h2 {
+    font-size: clamp(23px, 3vw, 31px);
+    letter-spacing: -.7px;
+}
+
+.cta p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 9px;
+}
+
+/* Footer */
+
+.footer {
+    padding: 27px 0;
+    margin-top: 65px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer p,
+.footer a {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.footer a:hover {
+    color: var(--forest);
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+    .hero {
+        padding-top: 52px;
+    }
+
+    .hero-grid,
+    .quality-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .hero-grid {
+        max-width: 650px;
+        margin: auto;
+    }
+
+    .visual-card {
+        max-width: 560px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .feature-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .quality-grid {
+        max-width: 650px;
+        margin: auto;
+    }
+
+    .nav-links {
+        gap: 17px;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-inner {
+        min-height: 70px;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        top: 76px;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        background: white;
+        box-shadow: 0 15px 35px #26352D10;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px;
+    }
+
+    .nav-cta {
+        text-align: center;
+    }
+
+    .hero {
+        padding: 44px 0 48px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1.5px;
+    }
+
+    .hero-copy {
+        font-size: 13px;
+    }
+
+    .visual-card {
+        padding: 19px;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card:last-child {
+        grid-column: auto;
+    }
+
+    .feature-card {
+        padding: 22px;
+    }
+
+    .rubric-card {
+        padding: 22px;
+    }
+
+    .cta {
+        padding: 25px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="container nav-inner">
+
+        <a href="index.html" class="brand" aria-label="SAMS Home">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAMS</h2>
+                <p>STUDENT ACHIEVEMENTS</p>
+            </div>
+        </a>
+
+        <button class="mobile-menu" id="menuButton"
+                aria-label="Toggle navigation" aria-expanded="false">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#features">Features</a>
+            <a href="#recognition">Recognition</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="achievements">Achievements</a>
+            <a href="achievement-form.html" class="nav-cta">
+                + Submit Achievement
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
+
+            <div class="hero-copy-block">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    YOUR JOURNEY. YOUR IMPACT.
+                </div>
+
+                <h1>
+                    Every achievement<br>
+                    tells a <span>story.</span>
+                </h1>
+
+                <p class="hero-copy">
+                    Your hard work deserves more than a certificate in a drawer.
+                    Record your milestones, keep your achievements organized,
+                    and build a clearer picture of your growth.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="achievement-form.html" class="primary-btn">
+                        Submit an achievement <span>→</span>
+                    </a>
+
+                    <a href="dashboard.html" class="secondary-btn">
+                        Explore dashboard ↗
+                    </a>
+                </div>
+
+                <p class="hero-note">
+                    ◈ &nbsp; A structured space for student accomplishments.
+                </p>
+            </div>
+
+            <!-- Conceptual visual; contains no fabricated data -->
+            <div class="visual-card">
+                <div class="visual-head">
+                    <div>
+                        <h3>Your growth, over time</h3>
+                        <p>A visual reminder that progress is a journey.</p>
+                    </div>
+                    <div class="visual-symbol">↗</div>
+                </div>
+
+                <p class="chart-label">ILLUSTRATIVE GROWTH PATH</p>
+
+                <svg class="growth-chart" viewBox="0 0 420 190"
+                     role="img"
+                     aria-label="Illustrative upward growth curve, not actual student data">
+
+                    <defs>
+                        <linearGradient id="areaFill" x1="0" y1="0"
+                                        x2="0" y2="1">
+                            <stop offset="0%" stop-color="#A8BDA5"
+                                  stop-opacity=".48"/>
+                            <stop offset="100%" stop-color="#A8BDA5"
+                                  stop-opacity=".02"/>
+                        </linearGradient>
+                    </defs>
+
+                    <g stroke="#E7E9E1" stroke-width="1">
+                        <line x1="20" y1="30" x2="400" y2="30"/>
+                        <line x1="20" y1="70" x2="400" y2="70"/>
+                        <line x1="20" y1="110" x2="400" y2="110"/>
+                        <line x1="20" y1="150" x2="400" y2="150"/>
+                    </g>
+
+                    <path d="M20 145 C65 137, 75 120, 110 127
+                             S165 95, 200 105 S250 77, 285 83
+                             S345 35, 400 25 L400 165 L20 165 Z"
+                          fill="url(#areaFill)"/>
+
+                    <path d="M20 145 C65 137, 75 120, 110 127
+                             S165 95, 200 105 S250 77, 285 83
+                             S345 35, 400 25"
+                          fill="none" stroke="#37624D"
+                          stroke-width="3" stroke-linecap="round"
+                          stroke-dasharray="650"
+                          stroke-dashoffset="650">
+                        <animate attributeName="stroke-dashoffset"
+                                 from="650" to="0" dur="1.5s"
+                                 fill="freeze"/>
+                    </path>
+
+                    <circle cx="400" cy="25" r="5"
+                            fill="#D5AD61" stroke="#FFFFFF"
+                            stroke-width="3"/>
+
+                    <g fill="#7B887F" font-size="9">
+                        <text x="20" y="183">BEGIN</text>
+                        <text x="180" y="183">LEARN</text>
+                        <text x="360" y="183">GROW</text>
+                    </g>
+                </svg>
+
+                <div class="chart-caption">
+                    <span class="legend-dot"></span>
+                    Conceptual illustration — not measured performance data
+                </div>
+
+                <div class="visual-bottom">
+                    <div class="mini-card">
+                        <span>YOUR RECORD</span>
+                        <strong>One place to begin</strong>
+                        <p>Organize your milestones</p>
+                    </div>
+
+                    <div class="mini-card">
+                        <span>YOUR NEXT STEP</span>
+                        <strong>Keep moving forward</strong>
+                        <p>Every submission matters</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section section-white" id="features">
+        <div class="container">
+
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">A CLEARER WAY FORWARD</div>
+                    <h2>Your achievements, organized.</h2>
+                    <p>
+                        Spend less time searching for records and more time
+                        focusing on what you want to accomplish next.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+                    <div class="feature-icon">＋</div>
+                    <h3>Record your milestones</h3>
+                    <p>
+                        Submit academic, technical, extracurricular, and
+                        other accomplishments through one structured form.
+                    </p>
+                    <a href="achievement-form.html" class="feature-link">
+                        Submit an achievement →
+                    </a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">▤</div>
+                    <h3>Keep everything together</h3>
+                    <p>
+                        Access your saved achievement records in one place
+                        instead of managing scattered notes and documents.
+                    </p>
+                    <a href="achievements" class="feature-link">
+                        View achievement records →
+                    </a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">↗</div>
+                    <h3>See your progress</h3>
+                    <p>
+                        Use the dashboard as the foundation for activity
+                        trends, status summaries, and future progress insights.
+                    </p>
+                    <a href="dashboard.html" class="feature-link">
+                        Explore dashboard →
+                    </a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- QUALITY / RECOGNITION -->
+    <section class="section" id="recognition">
+        <div class="container quality-grid">
+
+            <div class="quality-copy">
+                <div class="section-kicker">RECOGNITION WITH PURPOSE</div>
+
+                <h2>Celebrate the work behind the achievement.</h2>
+
+                <p>
+                    Recognition should reflect more than a title.
+                    A thoughtful evaluation can consider what was accomplished,
+                    the effort involved, and the evidence supporting the result.
+                </p>
+
+                <div class="quality-list">
+
+                    <div class="quality-item">
+                        <div class="check">✓</div>
+                        <div>
+                            <strong>Evidence matters</strong>
+                            <p>Support submissions with relevant details and proof.</p>
+                        </div>
+                    </div>
+
+                    <div class="quality-item">
+                        <div class="check">✓</div>
+                        <div>
+                            <strong>Clear evaluation criteria</strong>
+                            <p>Use defined criteria rather than unexplained scores.</p>
+                        </div>
+                    </div>
+
+                    <div class="quality-item">
+                        <div class="check">✓</div>
+                        <div>
+                            <strong>Fair and transparent recognition</strong>
+                            <p>Make the basis of any future rankings understandable.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="rubric-card">
+                <div class="rubric-top">
+                    <h3>Achievement quality framework</h3>
+                    <span class="rubric-tag">PROPOSED</span>
+                </div>
+
+                <div class="rubric-row">
+                    <span>Impact and outcome</span>
+                    <span>To be defined</span>
+                </div>
+
+                <div class="rubric-row">
+                    <span>Evidence and verification</span>
+                    <span>To be defined</span>
+                </div>
+
+                <div class="rubric-row">
+                    <span>Effort and difficulty</span>
+                    <span>To be defined</span>
+                </div>
+
+                <div class="rubric-row">
+                    <span>Originality and initiative</span>
+                    <span>To be defined</span>
+                </div>
+
+                <p class="rubric-note">
+                    This is a proposed framework, not an active scoring system.
+                    Scores and leaderboards will be introduced only after
+                    evaluation rules and the review process are implemented.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="cta">
+                <div>
+                    <h2>Have something worth recording?</h2>
+                    <p>Start building your achievement record today.</p>
+                </div>
+
+                <a href="achievement-form.html" class="primary-btn">
+                    Submit your achievement →
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container footer-inner">
+        <a href="index.html" class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SAMS</h2>
+                <p>STUDENT ACHIEVEMENTS</p>
+            </div>
+        </a>
+
+        <p>Recognition through evidence. Progress through action.</p>
+
+        <a href="dashboard.html">Open dashboard ↗</a>
+    </div>
+</footer>
+
+<script>
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", function () {
+        const isOpen = navLinks.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Close the mobile navigation after selecting a link.
+    navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            navLinks.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.textContent = "☰";
+        });
+    });
+
+    // Close the mobile menu when the Escape key is pressed.
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            navLinks.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.textContent = "☰";
+        }
+    });
+</script>
+
+</body>
+</html>
+

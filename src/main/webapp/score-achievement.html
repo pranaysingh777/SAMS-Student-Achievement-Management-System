@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Score Achievement — SAMS</title>
+
+    <style>
+        :root {
+            --ivory: #F7F7F0;
+            --forest: #244B3B;
+            --sage: #A8BDA5;
+            --gold: #D5AD61;
+            --charcoal: #26352D;
+            --muted: #718078;
+            --line: #DDE5DA;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--ivory);
+            color: var(--charcoal);
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            height: 64px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            color: var(--forest);
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back {
+            color: var(--forest);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        main {
+            max-width: 720px;
+            margin: 55px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            margin-bottom: 25px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 8px 0;
+            color: var(--forest);
+            font-size: 32px;
+        }
+
+        .intro p {
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .achievement-card {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(36, 75, 59, 0.05);
+        }
+
+        .achievement-label {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .achievement-title {
+            margin: 0;
+            color: var(--forest);
+            font-size: 22px;
+        }
+
+        .achievement-description {
+            margin: 10px 0 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .badge {
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #F1F6EF;
+            color: var(--forest);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .evidence-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: var(--forest);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .evidence-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .error {
+            color: #9B4B42;
+            background: #FFF3F0;
+            border: 1px solid #F0D6D1;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(36, 75, 59, 0.05);
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--forest);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .range-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            font-size: 14px;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--sage);
+        }
+
+        input[readonly] {
+            background: #F4F6F3;
+            color: var(--muted);
+        }
+
+        .score-total {
+            margin: 28px 0;
+            padding: 18px;
+            border-radius: 12px;
+            background: #F1F6EF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .score-total span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .score-total strong {
+            color: var(--forest);
+            font-size: 28px;
+        }
+
+        button {
+            width: 100%;
+            border: 0;
+            border-radius: 10px;
+            padding: 14px;
+            background: var(--forest);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #37624D;
+        }
+
+        button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .form-title {
+            margin: 0 0 22px;
+            color: var(--forest);
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a class="brand" href="index.html">SAMS</a>
+    <a class="back" href="achievements">View Achievements</a>
+</nav>
+
+<main>
+
+    <div class="intro">
+        <div class="eyebrow">Achievement Review</div>
+
+        <h1>Evaluate achievement quality.</h1>
+
+        <p>
+            Review the submitted achievement and score it using the
+            four transparent criteria below.
+        </p>
+    </div>
+
+    <div class="achievement-card">
+
+        <div id="loading" class="loading">
+            Loading achievement...
+        </div>
+
+        <div id="achievementContent" style="display:none;">
+
+            <div class="achievement-label">
+                Achievement
+            </div>
+
+            <h2
+                id="achievementTitle"
+                class="achievement-title">
+            </h2>
+
+            <p
+                id="achievementDescription"
+                class="achievement-description">
+            </p>
+
+            <div class="meta">
+
+                <span
+                    id="achievementIdBadge"
+                    class="badge">
+                </span>
+
+                <span
+                    id="achievementCategory"
+                    class="badge">
+                </span>
+
+                <span
+                    id="achievementStatus"
+                    class="badge">
+                </span>
+
+            </div>
+
+            <a
+                id="evidenceLink"
+                class="evidence-link"
+                href="#"
+                target="_blank"
+                style="display:none;">
+                View submitted evidence →
+            </a>
+
+        </div>
+
+        <div
+            id="errorMessage"
+            class="error">
+        </div>
+
+    </div>
+
+    <form
+        id="scoreForm"
+        class="card"
+        action="score-achievement"
+        method="post"
+        style="display:none;"
+    >
+
+        <h2 class="form-title">
+            Quality Evaluation
+        </h2>
+
+        <div class="field">
+
+            <label for="id">
+                Achievement ID
+            </label>
+
+            <input
+                type="number"
+                id="id"
+                name="id"
+                min="1"
+                readonly
+                required
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label for="impactScore">
+                Impact & Outcome
+            </label>
+
+            <div class="range-info">
+                <span>Maximum: 30</span>
+                <span id="impactValue">0</span>
+            </div>
+
+            <input
+                type="number"
+                id="impactScore"
+                name="impactScore"
+                min="0"
+                max="30"
+                value="0"
+                required
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label for="evidenceScore">
+                Evidence & Verification
+            </label>
+
+            <div class="range-info">
+                <span>Maximum: 30</span>
+                <span id="evidenceValue">0</span>
+            </div>
+
+            <input
+                type="number"
+                id="evidenceScore"
+                name="evidenceScore"
+                min="0"
+                max="30"
+                value="0"
+                required
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label for="difficultyScore">
+                Effort & Difficulty
+            </label>
+
+            <div class="range-info">
+                <span>Maximum: 20</span>
+                <span id="difficultyValue">0</span>
+            </div>
+
+            <input
+                type="number"
+                id="difficultyScore"
+                name="difficultyScore"
+                min="0"
+                max="20"
+                value="0"
+                required
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label for="originalityScore">
+                Originality & Initiative
+            </label>
+
+            <div class="range-info">
+                <span>Maximum: 20</span>
+                <span id="originalityValue">0</span>
+            </div>
+
+            <input
+                type="number"
+                id="originalityScore"
+                name="originalityScore"
+                min="0"
+                max="20"
+                value="0"
+                required
+            >
+
+        </div>
+
+        <div class="score-total">
+
+            <span>Quality Score</span>
+
+            <strong>
+                <span id="totalScore">0</span>/100
+            </strong>
+
+        </div>
+
+        <button type="submit">
+            Save Evaluation
+        </button>
+
+    </form>
+
+</main>
+
+<script>
+
+    const fields = [
+        ["impactScore", "impactValue"],
+        ["evidenceScore", "evidenceValue"],
+        ["difficultyScore", "difficultyValue"],
+        ["originalityScore", "originalityValue"]
+    ];
+
+    function updateScore() {
+
+        let total = 0;
+
+        fields.forEach(function(pair) {
+
+            const input =
+                document.getElementById(pair[0]);
+
+            const display =
+                document.getElementById(pair[1]);
+
+            const value =
+                Number(input.value) || 0;
+
+            display.textContent = value;
+
+            total += value;
+        });
+
+        document.getElementById(
+            "totalScore"
+        ).textContent = total;
+    }
+
+    fields.forEach(function(pair) {
+
+        document.getElementById(pair[0])
+            .addEventListener("input", updateScore);
+
+    });
+
+    function showError(message) {
+
+        document.getElementById("loading")
+            .style.display = "none";
+
+        const error =
+            document.getElementById("errorMessage");
+
+        error.textContent = message;
+        error.style.display = "block";
+    }
+
+    async function loadAchievement() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const id =
+            params.get("id");
+
+        if (!id) {
+
+            showError(
+                "No achievement was selected. Please open this page from the Achievements list."
+            );
+
+            return;
+        }
+
+        try {
+
+            const response =
+                await fetch(
+                    "achievement-details?id=" +
+                    encodeURIComponent(id)
+                );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Achievement could not be found."
+                );
+            }
+
+            const data =
+                await response.json();
+
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
+            document.getElementById("loading")
+                .style.display = "none";
+
+            document.getElementById(
+                "achievementContent"
+            ).style.display = "block";
+
+            document.getElementById(
+                "scoreForm"
+            ).style.display = "block";
+
+            document.getElementById(
+                "achievementTitle"
+            ).textContent = data.title;
+
+            document.getElementById(
+                "achievementDescription"
+            ).textContent = data.description;
+
+            document.getElementById(
+                "achievementIdBadge"
+            ).textContent =
+                "ID #" + data.id;
+
+            document.getElementById(
+                "achievementCategory"
+            ).textContent =
+                data.category;
+
+            document.getElementById(
+                "achievementStatus"
+            ).textContent =
+                data.status;
+
+            document.getElementById(
+                "id"
+            ).value = data.id;
+
+            if (data.evidenceFile) {
+
+                const evidenceLink =
+                    document.getElementById(
+                        "evidenceLink"
+                    );
+
+                evidenceLink.href =
+                    "evidence-file?id=" +
+                    encodeURIComponent(data.id);
+
+                evidenceLink.style.display =
+                    "inline-block";
+            }
+
+            updateScore();
+
+        } catch (error) {
+
+            showError(
+                error.message ||
+                "Unable to load achievement."
+            );
+        }
+    }
+
+    loadAchievement();
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SAMS | Submit Achievement</title>
+
+    <style>
+        .file-upload {
+    margin-top: 5px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 16px;
+    border: 1px dashed #B9C8B6;
+    border-radius: 11px;
+    background: #FAFCF8;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.file-label:hover {
+    background: #F1F6EF;
+    border-color: var(--sage);
+}
+
+.upload-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #E5EEE1;
+    color: var(--forest);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.file-label strong {
+    display: block;
+    font-size: 12px;
+    color: var(--forest);
+}
+
+.file-label span {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.file-name {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 8px;
+}
+        :root {
+            --ivory: #F7F7F0;
+            --forest: #244B3B;
+            --forest-light: #37624D;
+            --sage: #A8BDA5;
+            --gold: #D5AD61;
+            --ink: #26352D;
+            --muted: #7B887F;
+            --border: #E7E9E1;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--ivory);
+            color: var(--ink);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            height: 76px;
+            background: #F7F7F0F2;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-inner {
+            width: min(1100px, 90%);
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--forest);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 21px;
+        }
+
+        .brand h2 {
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .brand p {
+            color: var(--muted);
+            font-size: 9px;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            color: var(--forest);
+        }
+
+        .page {
+            width: min(820px, 92%);
+            margin: 55px auto 80px;
+        }
+
+        .intro {
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--forest);
+            background: #E9EFE5;
+            border: 1px solid #DCE6D8;
+            border-radius: 100px;
+            padding: 7px 11px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin-bottom: 15px;
+        }
+
+        .intro h1 {
+            font-size: clamp(30px, 5vw, 43px);
+            letter-spacing: -1.3px;
+            line-height: 1.2;
+        }
+
+        .intro p {
+            max-width: 620px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+            margin-top: 11px;
+        }
+
+        .form-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 30px;
+            box-shadow: 0 18px 50px #26352D0A;
+        }
+
+        .form-section {
+            margin-bottom: 28px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 17px;
+        }
+
+        .section-number {
+            width: 25px;
+            height: 25px;
+            border-radius: 8px;
+            background: #E5EEE1;
+            color: var(--forest);
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .section-title h2 {
+            font-size: 14px;
+        }
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid #DCE1D9;
+            border-radius: 9px;
+            padding: 12px 13px;
+            background: #FCFCF9;
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 12px;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        textarea {
+            min-height: 105px;
+            resize: vertical;
+            line-height: 1.7;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px #A8BDA51F;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .difficulty-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+        }
+
+        .difficulty-options label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .difficulty-options input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .difficulty-option {
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border: 1px solid #DCE1D9;
+            border-radius: 9px;
+            color: var(--muted);
+            background: #FCFCF9;
+            font-size: 11px;
+            transition: .2s;
+        }
+
+        .difficulty-options input:checked + .difficulty-option {
+            background: #E7EEE4;
+            border-color: var(--sage);
+            color: var(--forest);
+            font-weight: 700;
+        }
+
+        .evidence-note {
+            background: #F7F3E8;
+            border: 1px solid #EEE2C7;
+            border-radius: 10px;
+            padding: 12px;
+            color: #75613A;
+            font-size: 10px;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+
+        .form-footer {
+            margin-top: 29px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .privacy-note {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .submit-btn {
+            border: none;
+            border-radius: 9px;
+            background: var(--forest);
+            color: white;
+            padding: 13px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+            white-space: nowrap;
+        }
+
+        .submit-btn:hover {
+            background: var(--forest-light);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 650px) {
+            .page {
+                margin-top: 35px;
+            }
+
+            .form-card {
+                padding: 21px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .difficulty-options {
+                grid-template-columns: 1fr;
+            }
+
+            .form-footer {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-inner">
+
+        <a href="index.html" class="brand" aria-label="SAMS Home">
+            <div class="brand-icon">S</div>
+
+            <div>
+                <h2>SAMS</h2>
+                <p>STUDENT ACHIEVEMENTS</p>
+            </div>
+        </a>
+
+        <a href="dashboard.html" class="nav-link">
+            Dashboard ↗
+        </a>
+
+    </div>
+</header>
+
+
+<main class="page">
+
+    <div class="intro">
+
+        <span class="eyebrow">
+            BUILD YOUR RECORD
+        </span>
+
+        <h1>
+            Submit an achievement.
+        </h1>
+
+        <p>
+            Tell us what you accomplished, how you did it, and what changed
+            because of your work. These details will eventually help SAMS
+            evaluate achievement quality more meaningfully.
+        </p>
+
+    </div>
+
+
+    <form
+        class="form-card"
+        action="submit-achievement"
+        method="post"
+        enctype="multipart/form-data"
+    >
+
+        <!-- BASIC INFORMATION -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <div class="section-number">1</div>
+                <h2>Basic information</h2>
+            </div>
+
+            <div class="field">
+
+                <label for="title">
+                    Achievement title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    maxlength="100"
+                    placeholder="e.g. Won first place in a hackathon"
+                    required
+                >
+
+            </div>
+
+
+            <div class="two-column">
+
+                <div class="field">
+
+                    <label for="category">
+                        Category
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        required
+                    >
+                        <option value="">Select a category</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Technical">Technical</option>
+                        <option value="Competition">Competition</option>
+                        <option value="Leadership">Leadership</option>
+                        <option value="Extracurricular">Extracurricular</option>
+                        <option value="Research">Research</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Difficulty
+                    </label>
+
+                    <div class="difficulty-options">
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="difficulty"
+                                value="LOW"
+                            >
+                            <span class="difficulty-option">
+                                Low
+                            </span>
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="difficulty"
+                                value="MEDIUM"
+                                checked
+                            >
+                            <span class="difficulty-option">
+                                Medium
+                            </span>
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="difficulty"
+                                value="HIGH"
+                            >
+                            <span class="difficulty-option">
+                                High
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACHIEVEMENT -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <div class="section-number">2</div>
+                <h2>What did you accomplish?</h2>
+            </div>
+
+            <div class="field">
+
+                <label for="description">
+                    Description
+                    <span class="hint">
+                        What did you actually do?
+                    </span>
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    maxlength="1000"
+                    placeholder="Describe the achievement, your contribution, and the work involved."
+                    required
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- IMPACT -->
+
+        <section class="form-section">
+
+            <div class="section-title">
+                <div class="section-number">3</div>
+                <h2>Impact and evidence</h2>
+            </div>
+
+            <div class="field">
+
+                <label for="impact">
+                    Impact / outcome
+                    <span class="hint">
+                        What changed because of this?
+                    </span>
+                </label>
+
+                <textarea
+                    id="impact"
+                    name="impact"
+                    maxlength="1000"
+                    placeholder="For example: improved a process, reached users, won a competition, increased performance, solved a problem..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="evidence">
+                    Evidence / proof
+                    <span class="hint">
+                        Link, certificate, result, repository, etc.
+                    </span>
+                </label>
+
+                <div class="file-upload">
+
+        <input
+        type="file"
+        id="evidenceFile"
+        name="evidenceFile"
+        accept=".pdf,.png,.jpg,.jpeg,.webp"
+        >
+
+        <label for="evidenceFile" class="file-label">
+
+        <div class="upload-icon">↑</div>
+
+        <div>
+            <strong>Attach evidence</strong>
+
+            <span>
+                PDF, PNG, JPG or WEBP
+            </span>
+        </div>
+
+    </label>
+
+    <div id="fileName" class="file-name">
+        No file selected
+    </div>
+
+</div>
+
+                <div class="evidence-note">
+    Attach supporting evidence such as a certificate, screenshot,
+    result document, or other proof of your achievement.
+    SAMS will store the file with your submission.
+</div>
+
+            </div>
+
+        </section>
+
+
+        <div class="form-footer">
+
+            <div class="privacy-note">
+                Your submission will be stored in the SAMS achievement record.
+                <br>
+                It will initially be marked as <strong>PENDING</strong>.
+            </div>
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Submit achievement →
+            </button>
+
+        </div>
+
+    </form>
+
+</main>
+<script>
+    const evidenceFile =
+        document.getElementById("evidenceFile");
+
+    const fileName =
+        document.getElementById("fileName");
+
+    evidenceFile.addEventListener("change", function () {
+
+        if (this.files.length > 0) {
+            fileName.textContent =
+                this.files[0].name;
+        } else {
+            fileName.textContent =
+                "No file selected";
+        }
+    });
+</script>
+
+</body>
+</html>
